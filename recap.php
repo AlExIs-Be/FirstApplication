@@ -39,10 +39,14 @@
                                 "<td><a href='traitement.php?suppr=".$index."' class='fas fa-trash'></a></td>",
                                 "<td>".$product["name"]."</td>",
                                 "<td>".number_format($product["price"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
-                                "<td>".$product["qtt"]."</td>",
-                                "<td>".number_format($product["total"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
+                                "<td>
+                                    <a href='traitement.php?add=false&amp;ind=".$index."' class='fas fa-minus-square'></a>"
+                                    .$product["qtt"].
+                                    "<a href='traitement.php?add=true&amp;ind=".$index."' class='fas fa-plus-square'></a>
+                                </td>",
+                                "<td>".number_format($product["price"]*$product["qtt"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
                             "</tr>";
-                        $totalGeneral += $product["total"];
+                        $totalGeneral += $product["price"]*$product["qtt"];
                     }
                     echo "<tr>",
                             "<td colspan=4><strong>Total général : </strong></td>",

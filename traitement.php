@@ -20,7 +20,6 @@ if(isset($_POST["submit"])){
             "name" => $name,
             "price" => $price,
             "qtt" => $qtt,
-            "total" => $price*$qtt
         ];
 
         $_SESSION["products"][] = $product;
@@ -46,9 +45,18 @@ if(isset($_POST["submit"])){
     }
     header("Location:recap.php");
     die;
+
 }elseif(isset($_GET["suppr"])){
     $_SESSION["message"]["success"] = $_SESSION["products"][$_GET["suppr"]]["name"]." a bien été supprimé du panier.";
     unset($_SESSION["products"][$_GET["suppr"]]);
+    header("Location:recap.php");
+    die;
+}elseif(isset($_GET["add"])){
+    if($_GET["add"]=="true"){
+        $_SESSION["products"][$_GET["ind"]]["qtt"] += 1;
+    }elseif($_GET["add"]=="false"){
+        $_SESSION["products"][$_GET["ind"]]["qtt"] -= 1;
+    }
     header("Location:recap.php");
     die;
 }

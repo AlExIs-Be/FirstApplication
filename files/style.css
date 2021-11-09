@@ -2,8 +2,12 @@
     box-sizing: border-box;
 }
 body{
-    background-image: url("../images/architecture-2583394_1920.jpg"); 
-    margin: 0; 
+    background-image: url("../images/architecture-2583394_1920.jpg");
+    background-size: cover;
+    margin: 0;
+    --bckgclr: rgb(248, 237, 235, 85%);
+    --bckgclrdrk: rgb(231, 153, 133);
+    --color: rgb(22, 26, 29);
 }
 .wrapper{
     max-width: 1200px;
@@ -11,11 +15,11 @@ body{
     margin: auto;
     overflow: hidden;
     position: relative;
-    background-color: rgb(248, 237, 235, 85%);
-    color: rgb(22, 26, 29);
+    background-color: var(--bckgclr);
+    color: var(--color);
 }
 a{
-    color: rgb(22, 26, 29);
+    color: var(--color);
     text-decoration: none;
 }
 header{
@@ -36,10 +40,10 @@ nav a{
     border-bottom: 1px solid white;
 }
 #menu{
-    margin: 11px -9px;
+    margin: 11px -18px;
     transform: translateX(-110%);
     transition: transform 0.5s;
-    background-color: rgb(231, 153, 133);
+    background-color: var(--bckgclrdrk);
     position: absolute;
 }
 #menu.opened{
@@ -80,13 +84,20 @@ nav a{
 section{
     text-align: center;
 }
-input{
-    border:2px solid rgb(231, 153, 133);
+form{
+    width: 70%;
+    text-align: right;
+}
+label{
+    font-size: 1.3em;
+}
+form input{
+    border:2px solid var(--bckgclrdrk);
     padding: 4px 1em;
     border-radius: 5px;
     background-color: rgb(231, 111, 81, 60%);
-    color: rgb(22, 26, 29);
-    font-size: 1.2em;
+    color: var(--color);
+    font-size: 1em;
     font-weight: bold;
 }
 #trash{
@@ -99,20 +110,28 @@ input{
     border: none;
     background: none;
     font-size: 2em;
-    color: rgb(22, 26, 29);
+    color: var(--color);
 }
-table i{
+table a{
     cursor: pointer;
+    margin: 0 30px;
+    font-size: 1.2em;
 }
 table{
     margin: auto;
     text-align: center;
     font-size: 1.2em;
-    background-color: lightgray;
-    border: solid 10px grey;
+    background-color: var(--bckgclr);
+    border: solid 10px var(--bckgclrdrk);
     border-collapse: collapse;
 }
 td, th{
-    padding: 0.5em 1em;
-    border: 1px dashed black;
+    padding: 0.5em;
+    border: 1px dashed var(--color);
+}
+th{
+    padding: 0.5em 2em;
+}
+table p{
+    margin: 0;
 }
