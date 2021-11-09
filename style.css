@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+}
+.wrapper{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+}
+nav a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+    border-bottom: 1px solid white;
+}
+#menu{
+    transform: translateX(-110%);
+    transition: transform 0.5s;
+    background-color: black;
+    position: absolute;
+}
+#menu.opened{
+    transform: translateX(0);
+}
+#nbArticles{
+    display: inline-block;
+    position: absolute;
+    color: white;
+    background-color: rgb(255, 0, 0, 80%);
+    border-radius: 50%;
+    border: 3px grey solid;
+    text-align: center;
+    margin: 0;
+    width: 25px;
+    font-size: 0.5em;
+    top: 15px;
+    right: 0px;
+}
+
+#recap{
+    text-align: center;
+}
+table{
+    margin: auto;
+    text-align: center;
+    background-color: lightgray;
+    border: solid 10px grey;
+    border-collapse: collapse;
+}
+td, th{
+    padding: 0.5em 3em;
+    border: 1px dashed black;
+}
