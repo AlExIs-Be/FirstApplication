@@ -1,0 +1,118 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-image: url("../images/architecture-2583394_1920.jpg"); 
+    margin: 0; 
+}
+.wrapper{
+    max-width: 1200px;
+    height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(248, 237, 235, 85%);
+    color: rgb(22, 26, 29);
+}
+a{
+    color: rgb(22, 26, 29);
+    text-decoration: none;
+}
+header{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    background-color: rgb(231, 111, 81, 60%);
+}
+header i{
+    cursor: pointer;
+}
+nav a{
+    cursor: pointer;
+    display: block;
+    color: white;
+    padding: 1em;
+    border-bottom: 1px solid white;
+}
+#menu{
+    margin: 11px -9px;
+    transform: translateX(-110%);
+    transition: transform 0.5s;
+    background-color: rgb(231, 153, 133);
+    position: absolute;
+}
+#menu.opened{
+    transform: translateX(0);
+}
+#nbArticles{
+    display: inline-block;
+    position: absolute;
+    color: white;
+    background-color: rgb(255, 0, 0, 80%);
+    border-radius: 50%;
+    border: 3px grey solid;
+    text-align: center;
+    margin: 0;
+    width: 25px;
+    font-size: 0.5em;
+    top: 25px;
+    right: 5px;
+}
+.message{
+    margin: auto;
+    width: 400px;
+    text-align: center;
+}
+.message p{
+    padding: 0.3em;
+    border-radius: 10px;
+    font-size: 1.3em;
+    color: white;
+}
+.success{
+    background-color: green;
+}
+.failure{
+    background-color: red;
+}
+
+section{
+    text-align: center;
+}
+input{
+    border:2px solid rgb(231, 153, 133);
+    padding: 4px 1em;
+    border-radius: 5px;
+    background-color: rgb(231, 111, 81, 60%);
+    color: rgb(22, 26, 29);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#trash{
+    position: absolute;
+    right: 10px;
+    top: 70px;
+}
+#trash button{
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 2em;
+    color: rgb(22, 26, 29);
+}
+table i{
+    cursor: pointer;
+}
+table{
+    margin: auto;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: lightgray;
+    border: solid 10px grey;
+    border-collapse: collapse;
+}
+td, th{
+    padding: 0.5em 1em;
+    border: 1px dashed black;
+}
