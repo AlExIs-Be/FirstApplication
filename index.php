@@ -42,6 +42,9 @@
                 </p>
             </form>
         </section>
+        <?php
+        include "files/footer.php"
+        ?>
     </div>
     <script src="files/script.js"></script>
 </body>
