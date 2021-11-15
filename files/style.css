@@ -145,6 +145,9 @@ table a{
     margin: 0 30px;
     font-size: 1.2em;
 }
+.tablecontainer{
+    overflow-x: auto;
+}
 table{
     margin: auto;
     text-align: center;

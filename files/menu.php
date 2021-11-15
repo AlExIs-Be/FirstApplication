@@ -25,7 +25,7 @@ if(isset($_SESSION["products"])){
     <?php 
     if(isset($_SESSION["message"])){
         foreach($_SESSION["message"] as $value => $notif){
-            echo "<p class='$value'>".$notif."</p>";
+            echo "<p class='$value'>".ucfirst(strtolower($notif))."</p>";
         }
     }
     unset($_SESSION["message"]);

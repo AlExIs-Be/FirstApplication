@@ -17,13 +17,13 @@ if(isset($_POST["submit"])){
 
     if( $name && $price && $qtt){
         $product = [
-            "name" => $name,
+            "name" => ucfirst(strtolower($name)),
             "price" => $price,
             "qtt" => $qtt,
         ];
 
         $_SESSION["products"][] = $product;
-        $_SESSION["message"]["success"] = ucfirst(strtolower($name))." a bien été ajouté au panier ".$qtt." fois";
+        $_SESSION["message"]["success"] = $name." a bien été ajouté au panier ".$qtt." fois";
     
     }elseif(!$name){
         $_SESSION["message"]["failure"] = "Il faut renseigner un produit.";
@@ -56,6 +56,10 @@ if(isset($_POST["submit"])){
         $_SESSION["products"][$_GET["ind"]]["qtt"] += 1;
     }elseif($_GET["add"]=="false"){
         $_SESSION["products"][$_GET["ind"]]["qtt"] -= 1;
+        if($_SESSION["products"][$_GET["ind"]]["qtt"] == 0){
+            $_SESSION["message"]["success"] = $_SESSION["products"][$_GET["ind"]]["name"]." a bien été supprimé du panier.";
+            unset($_SESSION["products"][$_GET["ind"]]);
+        }
     }
     header("Location:recap.php");
     die;

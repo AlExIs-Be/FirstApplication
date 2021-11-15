@@ -26,7 +26,7 @@
                     echo "<p>Aucun produit dans votre panier pour le moment.</p>";
                 }
                 else{
-                    echo "<table><thead><tr>",
+                    echo "<div class='tablecontainer'><table><thead><tr>",
                             "<th></th>",
                             "<th>Nom</th>",
                             "<th>Prix</th>",
@@ -52,7 +52,7 @@
                             "<td colspan=4><strong>Total général : </strong></td>",
                             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;&euro;</strong></td>",
                         "</tr>",
-                        "</tbody></table>";
+                        "</tbody></table></div>";
                 }
             ?>
         </section>
