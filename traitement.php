@@ -21,8 +21,16 @@ if(isset($_POST["submit"])){
             "price" => $price,
             "qtt" => $qtt,
         ];
-
-        $_SESSION["products"][] = $product;
+        if(isset($_SESSION["products"])){
+            foreach($_SESSION["products"] as $item){
+                $products[] = $item["name"];
+            }
+            if( $ind = array_search( ucfirst( strtolower($name) ), $products)){
+                if($_SESSION["products"][$ind]["price"] == $price){
+                    $_SESSION["products"][$ind]["qtt"] += $qtt;
+                }
+            }else{$_SESSION["products"][] = $product;}
+        }else{$_SESSION["products"][] = $product;}
         $_SESSION["message"]["success"] = $name." a bien été ajouté au panier ".$qtt." fois";
     
     }elseif(!$name){
