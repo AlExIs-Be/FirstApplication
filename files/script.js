@@ -1,6 +1,5 @@
 const menuBtn = document.querySelector(".menuBtn")
 const menu = document.querySelector("#menu")
-const darkMode = document.querySelector("#switchMode")
 
 function openMenu(toggle=true){
     if(toggle){
@@ -16,7 +15,3 @@ menuBtn.addEventListener("click", function(event){
     openMenu()
 })
 document.body.addEventListener("click", ()=> openMenu(false))
-
-darkMode.addEventListener("click", ()=>{
-    document.body.classList.toggle("darkmode")
-})
