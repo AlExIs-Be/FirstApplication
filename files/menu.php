@@ -1,11 +1,3 @@
-<?php
-$nb=0;
-if(isset($_SESSION["products"])){
-    foreach($_SESSION["products"] as $index => $product){
-        $nb += $product["qtt"];
-    }
-}
-?>
 <header>
     <div>
         <i class="fas fa-bars menuBtn"></i>
@@ -16,18 +8,11 @@ if(isset($_SESSION["products"])){
     </div>
     <div>
         <a href="recap.php">
-            <p id="nbArticles"><?=$nb?></p>
+            <p id="nbArticles"><?=countProducts()?></p>
             <i class="fas fa-shopping-cart"></i>
         </a>
     </div>
 </header>
 <div class="message">
-    <?php 
-    if(isset($_SESSION["message"])){
-        foreach($_SESSION["message"] as $value => $notif){
-            echo "<p class='$value'>".ucfirst(strtolower($notif))."</p>";
-        }
-    }
-    unset($_SESSION["message"]);
-    ?>
+    <?=message()?>
 </div>

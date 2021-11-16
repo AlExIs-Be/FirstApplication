@@ -71,13 +71,5 @@ if(isset($_POST["submit"])){
     }
     header("Location:recap.php");
     die;
-}elseif(isset($_GET["darkMode"])){
-    $_SESSION["mode"] = $_GET["darkMode"];
-    if($_SESSION["mode"]==0){
-        $_SESSION["mode"]==1;
-    }else{
-        $_SESSION["mode"]==0;
-    }
 }
-
 header("Location:index.php");

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "files/function.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +50,8 @@
                         $totalGeneral += $product["price"]*$product["qtt"];
                     }
                     echo "<tr>",
-                            "<td colspan=4><strong>Total général : </strong></td>",
+                            "<td colspan=3><strong>Total général : </strong></td>",
+                            "<td>".countProducts()."</td>",
                             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;&euro;</strong></td>",
                         "</tr>",
                         "</tbody></table></div>";
