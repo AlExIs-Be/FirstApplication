@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "files/function.php"
+    include "files/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,7 @@
             include "files/menu.php";
         ?>
         <section id="recap">
-            <form id="trash" action="traitement.php" method="post">
-                <button type="submit" name="emptyAll" class='fas fa-trash'></button>
-            </form>
+
             <h1>Récapitulatif de votre commande</h1>
             <?php
                 if(!isset($_SESSION["products"]) || empty($_SESSION["products"])){
@@ -37,13 +35,13 @@
                     $totalGeneral = 0;
                     foreach($_SESSION["products"] as $index => $product){
                         echo "<tr>",
-                                "<td><a href='traitement.php?suppr=".$index."' class='fas fa-trash'></a></td>",
+                                "<td><a href='traitement.php?action=suppr&id=".$index."' class='fas fa-trash'></a></td>",
                                 "<td>".$product["name"]."</td>",
                                 "<td>".number_format($product["price"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
                                 "<td>
-                                    <a href='traitement.php?add=false&amp;ind=".$index."' class='fas fa-minus-square'></a>"
+                                    <a href='traitement.php?action=qtt&amp;add=false&amp;id=".$index."' class='fas fa-minus-square'></a>"
                                     .$product["qtt"].
-                                    "<a href='traitement.php?add=true&amp;ind=".$index."' class='fas fa-plus-square'></a>
+                                    "<a href='traitement.php?action=qtt&amp;add=true&amp;id=".$index."' class='fas fa-plus-square'></a>
                                 </td>",
                                 "<td>".number_format($product["price"]*$product["qtt"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
                             "</tr>";
@@ -55,7 +53,9 @@
                             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;&euro;</strong></td>",
                         "</tr>",
                         "</tbody></table></div>";
+                        echo "<a href='traitement.php?action=emptyAll' class='trash fas fa-trash'> Vider le panier</a>";
                 }
+                
             ?>
         </section>
         <?php

@@ -6,6 +6,7 @@
             <a href="recap.php">Panier</a>
         </nav>
     </div>
+    <a  href="admin.php"><i class="hidden fas fa-user-cog"></i></a>
     <div>
         <a href="recap.php">
             <p id="nbArticles"><?=countProducts()?></p>
