@@ -6,7 +6,7 @@
 
     $action = filter_input(INPUT_GET, "action", FILTER_VALIDATE_REGEXP, [
         "options" => [
-            "regexp" => "/newProd|addProd|emptyAll|suppr|qtt|delete/"
+            "regexp" => "/newProd|updateProd|addProd|emptyAll|suppr|qtt|delete/"
         ]
     ]);
 
@@ -43,24 +43,48 @@
                     $_SESSION["message"]["failure"] = "Tu n'es pas allé traiter par le formulaire !";
                 }
                 break;
-            
+            case "updateProd":
+                $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                $desc = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
+                $img = filter_input(INPUT_POST, "img", FILTER_VALIDATE_URL);
+                $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, [
+                        "options" => [
+                            "min_range" => 0
+                            ],
+                            "flags" => FILTER_FLAG_ALLOW_FRACTION
+                        ]);
+                $prod = ["name" => $name, "description" => $desc, "price" => $price, "image" => $img];
+                if($id){
+                    foreach($prod as $column => $value){
+                        if($value){
+                            updateProduct($id, $column, $value);
+                        }
+                    }
+                    $_SESSION["message"]["success"] = "Produit modifié avec succès.";
+                }else{
+                    $_SESSION["message"]["failure"] = "ce produit n'existe pas.";
+                }
+                header("Location:admin.php");
+                die;
+                break;
             case "addProd":
                 $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-
-                if( !$_SESSION['products'][$id] ){
-                    $productAdded = findOneById($id);
-                    $product = [
-                        "name"  => $productAdded["name"],
-                        "price" => $productAdded["price"],
-                        "qtt"   => 1,
-                    ];
-        
-                    $_SESSION['products'][$id] = $product;
-                    
+                
+                if($id){
+                    if( !$_SESSION['products'][$id] ){
+                        $product = findOneById($id);
+                        $product["qtt"]  = 1;
+            
+                        $_SESSION['products'][$id] = $product;
+                        
+                    }else{
+                        $_SESSION['products'][$id]["qtt"] ++;
+                    }
+                    $_SESSION["message"]["success"] = $_SESSION["products"][$id]["name"]." a bien été ajouté au panier.";
                 }else{
-                    $_SESSION['products'][$id]["qtt"] += 1;
+                    $_SESSION["message"]["failure"] = "Le produit n'existe pas.";
                 }
-                $_SESSION["message"]["success"] = $_SESSION["products"][$id]["name"]." a bien été ajouté au panier";
                 header("Location:index.php");
                 die;
                 break;

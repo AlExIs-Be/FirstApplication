@@ -67,3 +67,17 @@
         $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
+    /**
+     * Permet de changer la valeur d'une colonne pour une entrée de la base de donnée
+     * @param $id - identifiant de la ligne
+     * @param $column - nom de la colonne à modifier
+     * @param $val - valeur à rentrer dans la case
+     */
+    function updateProduct($id, $column, $val){
+        $sql = "UPDATE products SET :column = :val WHERE id = :id";
+        $stmt = connexion()->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":column", $column);
+        $stmt->bindParam(":val", $val);
+        $stmt->execute();
+    }

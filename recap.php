@@ -17,7 +17,7 @@
         <?php 
             include "files/menu.php";
         ?>
-        <section id="recap">
+        <section class="recap">
 
             <h1>Récapitulatif de votre commande</h1>
             <?php
@@ -27,6 +27,7 @@
                 else{
                     echo "<div class='tablecontainer'><table><thead><tr>",
                             "<th></th>",
+                            "<th>Image</th>",
                             "<th>Nom</th>",
                             "<th>Prix</th>",
                             "<th>Quantité</th>",
@@ -36,6 +37,7 @@
                     foreach($_SESSION["products"] as $index => $product){
                         echo "<tr>",
                                 "<td><a href='traitement.php?action=suppr&id=".$index."' class='fas fa-trash'></a></td>",
+                                "<td><img src='".$product["image"]."'></td>",
                                 "<td>".$product["name"]."</td>",
                                 "<td>".number_format($product["price"], 2, ",", "&nbsp;")."&nbsp;&euro;</td>",
                                 "<td>
@@ -48,7 +50,7 @@
                         $totalGeneral += $product["price"]*$product["qtt"];
                     }
                     echo "<tr>",
-                            "<td colspan=3><strong>Total général : </strong></td>",
+                            "<td colspan=4><strong>Total général : </strong></td>",
                             "<td>".countProducts()."</td>",
                             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;&euro;</strong></td>",
                         "</tr>",

@@ -32,7 +32,7 @@
         <?php            
             include "files/menu.php";
         ?>
-        <?=$affich?>
+        <?=$affich ?>
         <?php
         include "files/footer.php"
         ?>

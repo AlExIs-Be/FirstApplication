@@ -173,10 +173,6 @@ section{
 h1{
     font-size: 2em;
 }
-form{
-    width: 70%;
-    text-align: right;
-}
 label{
     font-size: 1.3em;
 }
@@ -198,7 +194,7 @@ form input, textarea{
 }
 table a{
     cursor: pointer;
-    margin: 0 30px;
+    margin: 10px 25px;
     font-size: 1.2em;
 }
 .tablecontainer{
@@ -211,6 +207,7 @@ table{
     background-color: var(--bckgclr);
     border: solid 10px var(--bckgclrdark);
     border-collapse: collapse;
+    color: var(--color);
 }
 td, th{
     padding: 0.5em;
@@ -219,15 +216,15 @@ td, th{
 th{
     padding: 0.5em 2em;
 }
-table p{
-    margin: 0;
-}
+
 .splitscreen{
     display: flex;
     height: 90vh;
 }
 .addProduct{
-    flex: 1;
+    width: 50%;
+    box-sizing: content-box;
+    padding: 0 5em;
     border-right: solid 1px var(--bckgclrlight);
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -237,12 +234,16 @@ table p{
     display: none;
   }
 .delProduct{
-    flex: 1;
+    width: 50%;
     border-left: solid 1px var(--bckgclrlight);
     overflow-y: scroll;
+    overflow-x: scroll;
     -ms-overflow-style: none;
-  scrollbar-width: none;
+    scrollbar-width: none;
 }
 .delProduct::-webkit-scrollbar {
     display: none;
   }
+.recap{
+    overflow-y: scroll;
+}
