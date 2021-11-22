@@ -70,14 +70,21 @@
     /**
      * Permet de changer la valeur d'une colonne pour une entrée de la base de donnée
      * @param $id - identifiant de la ligne
-     * @param $column - nom de la colonne à modifier
-     * @param $val - valeur à rentrer dans la case
+     * @param $prod - tableau des valeurs à modifier dans l'ordre [nom, description, prix, image]
      */
-    function updateProduct($id, $column, $val){
-        $sql = "UPDATE products SET :column = :val WHERE id = :id";
+    function updateProduct($id, $prod){
+        $name = $prod[0];
+        $desc = $prod[1];
+        $price = $prod[2];
+        $img = $prod[3];
+        $sql = "UPDATE products 
+        SET name = :name, description = :desc, price = :price, image = :img 
+        WHERE id = :id";
         $stmt = connexion()->prepare($sql);
         $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":column", $column);
-        $stmt->bindParam(":val", $val);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":desc", $desc);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":img", $img);
         $stmt->execute();
     }

@@ -54,13 +54,9 @@
                             ],
                             "flags" => FILTER_FLAG_ALLOW_FRACTION
                         ]);
-                $prod = ["name" => $name, "description" => $desc, "price" => $price, "image" => $img];
+                $prod = [$name, $desc, $price, $img];
                 if($id){
-                    foreach($prod as $column => $value){
-                        if($value){
-                            updateProduct($id, $column, $value);
-                        }
-                    }
+                    updateProduct($id, $prod);
                     $_SESSION["message"]["success"] = "Produit modifié avec succès.";
                 }else{
                     $_SESSION["message"]["failure"] = "ce produit n'existe pas.";
