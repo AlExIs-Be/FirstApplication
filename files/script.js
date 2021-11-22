@@ -38,3 +38,16 @@ function setmode(mode){
 setmode(localStorage.getItem("mode"))
 
 switchMode.addEventListener( "click", ()=>switchmode())
+
+function confirmDelete(event, prodName){
+    event.preventDefault()
+    document.querySelector(".modal").style.display = "block"
+
+    let url = event.target.getAttribute("href")
+
+    modal.querySelector(".modal-action-confirm").setAttribute("href", url)
+    modal.querySelector(".prodName").innerText = prodName
+    modal.querySelector(".modal-action-cancel").addEventListener("click", ()=>{
+        modal.style.display = "none"
+    })
+}

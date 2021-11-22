@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-
+    include "files/functions.php";
     include "files/db-functions.php";
 
     $action = filter_input(INPUT_GET, "action", FILTER_VALIDATE_REGEXP, [
@@ -57,7 +57,7 @@
                 $prod = [$name, $desc, $price, $img];
                 if($id){
                     updateProduct($id, $prod);
-                    $_SESSION["message"]["success"] = "Produit modifié avec succès.";
+                    $_SESSION["message"]["success"] = "Produit $name modifié avec succès.";
                 }else{
                     $_SESSION["message"]["failure"] = "ce produit n'existe pas.";
                 }

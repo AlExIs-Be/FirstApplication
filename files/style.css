@@ -201,7 +201,7 @@ table a{
     overflow-x: auto;
 }
 table{
-    margin: auto;
+    margin: 0 auto 21px;
     text-align: center;
     font-size: 1.2em;
     background-color: var(--bckgclr);
@@ -219,7 +219,7 @@ th{
 
 .splitscreen{
     display: flex;
-    height: 90vh;
+    height: 91vh;
 }
 .addProduct{
     width: 50%;
@@ -244,6 +244,17 @@ th{
 .delProduct::-webkit-scrollbar {
     display: none;
   }
-.recap{
-    overflow-y: scroll;
+.modal{
+    display: none;
+    position: absolute;
+    text-align: center;
+    font-size: 2em;
+    width: 50vw;
+    left: 25vh;
+    top: 30%;
+    padding: 50px;
+    background-color: var(--oppcolor);
+    border-radius: 50px;
+    border: 2px solid var(--color);
+
 }
