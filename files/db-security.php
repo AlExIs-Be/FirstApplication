@@ -44,6 +44,6 @@ function findByUsernameOrEmail($username, $email){
             $stmt->bindParam(":username", $username);
             $stmt->bindParam(":mail", $email);
             $stmt->bindParam(":password", $hash);
-            $stmt->execute; 
+            $stmt->execute(); 
         }
     };

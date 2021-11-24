@@ -13,6 +13,20 @@
 
         switch($action){
             case "login":
+                if( isset($_POST["submit"])){
+                    $credentials = filter_input(INPUT_POST, "credentials", FILTER_SANITIZE_STRING);
+                    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+                    if($credentials && $password){
+                        if(($user = findByUsernameOrEmail($credentials, $credentials)) && password_verify($password, $user['password'])){
+                                $_SESSION['user'] = $user;
+                                $_SESSION["message"]["success"] = "Bienvenue ".$name = ucfirst($user["username"])." !";
+                                header("Location:../index.php");
+                                die;
+                        }else $_SESSION["message"]["failure"] = "Mauvais identifiant ou mot de passe, réessayez !" ;
+                    }else $_SESSION["message"]["failure"] = "Tous les champs doivent être remplis !";
+                }
+                header("Location: ../login.php");
+                die;
                 break;
             case "register":
                 if( isset($_POST["submit"])){
@@ -32,10 +46,13 @@
 
                     if($username && $email && $pass1){
                         if($pass1 === $pass2){
-                            findByUsernameOrEmail($username, $email);
-                            $hash = password_hash($pass1, PASSWORD_ARGON2ID);
-                            if( insertUser($username, $email, $hash) ){
-                                $_SESSION["message"]["success"] = "Vous avez bien été enregistré $username.";
+                            if(!findByUsernameOrEmail($username, $email)){
+                                $hash = password_hash($pass1, PASSWORD_ARGON2ID);
+                                if( insertUser($username, $email, $hash) ){
+                                    $_SESSION["message"]["success"] = "Vous avez bien été enregistré $username.";
+                                    header("Location : ../login.php");
+                                    die;
+                                };
                             }else{
                                 $_SESSION["message"]["failure"] = "il y a déjà un compte avec ce pseudo ou cette adresse.";
                             }
@@ -46,8 +63,12 @@
                         $_SESSION["message"]["failure"] = "Problème de remplissage du formulaire d'inscription.";
                     }
                 }
+                header("Location : ../register.php");
+                die;
                 break;
             case "logout":
+                unset($_SESSION["user"]);
+                $_SESSION["message"]["success"] = "Vous avez bien été déconnecté. A bientôt !";
                 break;
             }
     }

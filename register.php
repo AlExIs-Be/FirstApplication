@@ -20,30 +20,30 @@
         <section>
             <h1>Inscription</h1>
             <form action="files/security.php?action=register" method="post">
-                <p>
+                <div class="labelInput">
                     <label>
                         Nom d'utilisateur :
                         <input type="text" name="username" required>
                     </label>
-                </p>
-                <p>
+                </div>
+                <div class="labelInput">
                     <label>
                         Adresse E-mail :
                         <input type="email" name="email" required>
                     </label>
-                </p>
-                <p>
+                </div>
+                <div class="labelInput">
                     <label>
                         Mot de passe :
                         <input type="password" name="pass1" required>
                     </label>
-                </p>
-                <p>
+                </div>
+                <div class="labelInput">
                     <label>
                         Répeter le mot de passe :
                         <input type="password" name="pass2" required>
                     </label>
-                </p>
+                </div>
                 <p>
                     <input type="submit" name="submit" value="Inscription">
                 </p>
@@ -53,5 +53,6 @@
         include "files/footer.php"
         ?>
     </div>
+    <script src="files/script.js"></script>
 </body>
 </html>
