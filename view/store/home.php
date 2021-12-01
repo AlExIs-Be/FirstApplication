@@ -18,7 +18,7 @@
             <p> <?=mb_strimwidth($product["description"], 0, 50, "...")?></p>
             <p class='price'>
                 <?=$product['price']?>&nbsp;&euro;
-                <a href='?ctrl=store&action=addProd&id=<?=$product['id']?>'>Ajouter&nbsp;au&nbsp;panier</a>
+                <a href='?ctrl=cart&action=addProd&id=<?=$product['id']?>'>Ajouter&nbsp;au&nbsp;panier</a>
             </p>
         </div>
         <?php

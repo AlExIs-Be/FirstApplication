@@ -38,7 +38,7 @@ class ProductManager extends AbstractManager{
      * @param string $img - lien d'une image
      * @return int - identifiant du produit inséré dans la base
      */
-    public function insertProduct($name, $desc, $price, $img){
+    public function insertProduct($name, $desc, $price, $img=NULL){
         $this->executeQuery(
             "INSERT INTO products (name, description, price, image) VALUES (:name, :desc, :price, :img)",
             [
@@ -64,15 +64,11 @@ class ProductManager extends AbstractManager{
     }
     /**
      * Permet de changer la valeur d'une colonne pour une entrée de la base de donnée
-     * @param $id - identifiant de la ligne
-     * @param $prod - tableau des valeurs à modifier dans l'ordre [nom, description, prix, image]
+     * @param int $id - identifiant de la ligne
+     * @param string $params - nom, description, prix, image
      */
-    public function updateProduct($id, $prod){
-        $name = $prod[0];
-        $desc = $prod[1];
-        $price = $prod[2];
-        $img = $prod[3];
-        $this->executeQuery(
+    public function updateProduct($id, $name, $desc, $price, $img=NULL){
+        return $this->executeQuery(
             "UPDATE products 
             SET name = :name, description = :desc, price = :price, image = :img 
             WHERE id = :id",

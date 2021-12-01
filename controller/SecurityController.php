@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
     //?ctrl=security&action=logout
     public function logout()
     {
-        if(!$this->isGranted("ROLE_USER")) return false;
+        //if(!$this->isGranted("ROLE_USER")) return false;
         
         Session::remove("user");
         $this->addFlash("success", "A bientôt !");

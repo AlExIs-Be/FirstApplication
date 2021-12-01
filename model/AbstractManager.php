@@ -19,12 +19,22 @@ abstract class AbstractManager{
             ]
         );
     }
+    /**
+     * Permet l'exécution d'une requête sql
+     * @param string $sql - une requête sql
+     * @param NULL|array $params - des paramètres à lier dans la requête
+     * @return FALSE|$stmt - si la requête echoue ou si elle réussit
+     */
     protected static function executeQuery($sql, $params = NULL){
         $stmt = self::$connexion->prepare($sql);
         $stmt->execute($params);
-        return $stmt;
+        return $stmt;        
     }
 
+    /**
+     * récupère le dernier id entré en bdd
+     * @return int $id 
+     */
     protected function getLastInsertId(){
         return intval(self::$connexion->lastInsertId());
     }

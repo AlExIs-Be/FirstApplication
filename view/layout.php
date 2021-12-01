@@ -38,7 +38,15 @@
             </div>
             <div>
                 <a href="?ctrl=cart&action=recap" class="fas fa-shopping-cart">
-                    <p id="nbArticles"><?=countProducts()?></p>
+                    <?php 
+                        $nb = 0;
+                        if($products = Session::get("products")){
+                            foreach($products as $product){
+                                $nb += $product["qtt"];
+                            }
+                    }
+                    ?>
+                    <p id="nbArticles"><?=$nb?></p>
                 </a>
             </div>
         </header>
@@ -56,7 +64,7 @@
             ?>
         </div>
 
-        <?= $content?>;
+        <?= $content?>
 
         <footer>
             <p id="switchMode">&#9789;</p>

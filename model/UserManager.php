@@ -40,7 +40,7 @@ class UserManager extends AbstractManager{
      * @return bool  - true si réussi | false si email ou username déjà présent
      */
     public function insertUser($username, $email, $hash){
-        $this->executeQuery(
+        return $this->executeQuery(
             "INSERT INTO users (username, mail, password) VALUES (:username, :mail, :password)",
             [
                 ":username" => $username,

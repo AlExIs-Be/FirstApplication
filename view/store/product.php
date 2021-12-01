@@ -12,7 +12,7 @@
                 <p><?=$product["description"]?></p>
                 <p class='price'>
                     <?=$product["price"]?>&nbsp;&euro; 
-                    <a href='?ctrl=store&'> Ajouter au panier</a>
+                    <a href='?ctrl=cart&action=addProd&id=<?=$product["id"]?>'> Ajouter au panier</a>
                 </p>
             </div>
         </div>

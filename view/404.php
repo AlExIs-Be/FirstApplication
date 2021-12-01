@@ -1,3 +1,3 @@
 <div>
-    <p>page not found !!</p>
+    <h2 class="message">page not found !!</h2>
 </div>

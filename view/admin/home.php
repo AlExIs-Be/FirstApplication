@@ -1,69 +1,70 @@
 <?php
-   
-    $tableId = [];
-    $action = "newProduct";
-    $name = "";
-    $desc = "";
-    $price = "";
-    $img = "";
-    $value = "Ajouter";
-    $products = $response["data"]["products"];
-    $affich = "<table><thead><tr><th>Image</th><th>Nom</th><th>Prix</th><th></th></tr></thead><tbody>";
-    foreach($products as $product){
-        $tableId[] = $product["id"];
-        $affich .= "<tr><td><img src='".$product["image"]."'></td><td>".$product["name"]."</td><td>".$product["price"]."&nbsp;&euro;</td>";
-        $affich .= "<td><a href='#' class='fas fa-trash' onclick='confirmDelete(event,".$product["name"].")'></a>";
-        $affich .= "<a href='admin.php?id=".$product["id"]."' class='fas fa-pen'></a></td></tr>";
-    }
-    $affich .= "</tbody></table>";
-    if(isset($id) && in_array($id, $tableId)){
-        $product = findOneById($id);
-        $action = "updateProd";
-        $name = $product["name"];
-        $desc = $product["description"];
-        $price = $product["price"];
-        $img = $product["image"];
-        $value = "Editer";
-    }
-    
+    $prod = array_key_exists("product", $response["data"]) ? $response["data"]["product"] : ["name"=>"","description"=>"","price"=>"","image"=>""];
+    $products = $response["data"]["products"]
 ?>
 
 <div class="splitscreen">
     <section class="addProduct">
-        <h1><?=$value?> un produit</h1>
-        <form action="?ctrl=admin&action=<?=$action?>&id=<?=$id?>" method="post">
+        <h1><?=$response["data"]["title"]?> un produit</h1>
+        <form action="?ctrl=admin&action=<?=$response["data"]["action"]?>" method="post">
             <p>
                 <label>
                     Nom du produit :
-                    <input type="text" name="name" value="<?=$name?>">
+                    <input type="text" name="name" value="<?=$prod["name"]?>">
                 </label>
             </p>
             <p>
                 <label>
                     Description :
-                    <textarea rows=15 cols=30 name="desc"><?=$desc?></textarea>
+                    <textarea rows=15 cols=30 name="desc"><?=$prod["description"]?></textarea>
                 </label>
             </p>
             <p>
                 <label>
                     Prix du produit :
-                    <input type="number" name="price" step="0.01" value="<?=$price?>">
+                    <input type="number" name="price" step="0.01" value="<?=$prod["price"]?>">
                 </label>
             </p>
             <p>
                 <label>
                     Lien d'image :
-                    <input type="text" name="img" value="<?=$img?>">
+                    <input type="text" name="img" value="<?=$prod["image"]?>">
                 </label>
             </p>
             <p>
-                <input type="submit" name="submit" value="<?=$value?> le produit">
+                <input type="submit" value="<?=$response["data"]["title"]?> le produit">
             </p>
         </form>
     </section>
     <section class=delProduct>
-        <h1>Retirer un produit (définitivement)</h1>
-        <?=$affich ?>
+        <h1>Retirer/Editer un produit</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th></th>
+                </tr>
+            </thead
+            ><tbody>
+                <?php
+                 foreach($products as $product){
+                     ?>
+                    <tr>
+                        <td><img src='<?=$product["image"]?>'></td>
+                        <td><?=$product["name"]?></td>
+                        <td><?=$product["price"]?>&nbsp;&euro;</td>
+                        <td>
+                            <a href='?ctrl=admin&action=delete&id=<?=$product["id"]?>' class='fas fa-trash' onclick='confirmDelete(event,<?=$product["name"]?>)'></a>
+                            <a href='?ctrl=admin&action=editProd&id=<?=$product["id"]?>' class='fas fa-pen'></a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
     </section>
 </div>
     <div class="modal">
